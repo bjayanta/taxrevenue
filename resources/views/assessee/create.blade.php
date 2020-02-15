@@ -46,13 +46,13 @@
                         <div class="text-center">
                             <p class="mb-2"><strong>Or,</strong></p>
 
-                            <form action="" method="post" enctype="multipart/form-data" class="text-center">
+                            <form action="{{ url('assessee/preview') }}" method="post" enctype="multipart/form-data" class="text-center">
                                 @csrf
                                 
                                 <div>
-                                    <label for="upload" style="display: block;">Upload (.xlsx, .xls, .csv) *</label>
-                                    <input type="file" name="file" accept=".xlsx, .xls, .csv" id="upload" style="width: 190px;" required>
-                                    <small id="passwordHelpBlock" class="form-text text-muted">File extension must be .xlsx or, .xls or, .csv only.</small>
+                                    <label for="upload" style="display: block;">Upload (.xlsx) *</label>
+                                    <input type="file" name="file" accept=".xlsx" id="upload" style="width: 190px;" required>
+                                    <small id="passwordHelpBlock" class="form-text text-muted">File extension must be .xlsx only.</small>
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary mt-3 mb-2">Upload</button>

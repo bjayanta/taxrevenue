@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Assessee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
+use App\Assessee;
 use Auth;
 use App\TaxSession;
 
-class AssesseeController extends Controller
-{
+class AssesseeController extends Controller {
     private $context = [
-        'title' => 'AssesseeInput',
+        'title' => 'Assessee',
         'menu' => 'assessee',
     ];
 
@@ -29,16 +34,15 @@ class AssesseeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $assessees = Assessee::where('circle_id', Auth::user()->circle_id)->with('taxSessions')->paginate(100);
-
+        $assessees = Assessee::with('taxSessions')->where('circle_id', Auth::user()->circle_id)->paginate(100);
         $sessions = TaxSession::all();
         $total = [];
 
-        foreach($sessions as $session) {
+        foreach ($sessions as $session) {
             $total[$session->id] = 0;
         }
 
-        if(request()->search == 1) {
+        if (request()->search == 1) {
             $where = [
                 ['circle_id', 1],
                 ['tin_number', request()->tin_number]
@@ -124,5 +128,48 @@ class AssesseeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function preview(Request $request) {
+        $path = $request->file('file')->store('public');
+
+        $file_type = "Xlsx";
+        $file_name = "storage/app/" . $path;
+        $reader = IOFactory::createReader($file_type);
+        $reader->setLoadAllSheets();
+        $spreadsheet = $reader->load($file_name);
+        $worksheet = $spreadsheet->getActiveSheet(); //Selecting The Active Sheet
+        //$highest_row = $worksheet->getHighestRow();
+        $highest_row = $worksheet->getHighestRow();
+        $highest_col = "D";
+
+        $highest_cell = $highest_col . $highest_row;
+        $rang = "A2:" . $highest_cell; // Selecting The Cell Range
+
+        $dataToArray = $spreadsheet->getActiveSheet()
+            ->rangeToArray(
+                $rang,     // The worksheet range that we want to retrieve
+                NULL,        // Value that should be returned for empty cells
+                TRUE,        // Should formulas be calculated (the equivalent of getCalculatedValue() for each cell)
+                TRUE,        // Should values be formatted (the equivalent of getFormattedValue() for each cell)
+                TRUE         // Should the array be indexed by cell row and cell column
+            );
+
+        Storage::delete($path);
+        $fields = ["name", "tin_number", "old_tin_number", "tin_date", "circle_id"];
+        $data = array_map(function ($row) use ($fields) {
+            $row[] = Auth::user()->circle_id;
+            return array_combine($fields, $row);
+        }, $dataToArray);
+
+        return view('assessee.upload_preview', compact('data'))->with($this->context);
+    }
+
+    public function confirm_upload(Request $request) {
+        $data = json_decode($request->data, true);
+        
+        if (Assessee::insert($data)) {
+            return redirect("assessee")->with("success", "Data Successfully Imported");
+        }
     }
 }

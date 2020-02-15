@@ -18,9 +18,16 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resources([
     'assessee' => 'AssesseeController',
     'tax_return' => 'TaxReturnController',
+    'profile' => 'ProfileController',
 ]);
 
+Route::post('assessee/preview', 'AssesseeController@preview');
+Route::post('assessee/confirm_upload', 'AssesseeController@confirm_upload');
+
+// export
 Route::get('export/allAssessee', 'ExcelExportController@allAssessee')->name('export.allAssessee');
+Route::get('export/allSubmitedAssessee', 'ExcelExportController@allSubmitedAssessee')->name('export.allSubmitedAssessee');
+Route::get('export/allNonSubmitedAssessee', 'ExcelExportController@allNonSubmitedAssessee')->name('export.allNonSubmitedAssessee');
 
 // report controllers
 Route::get('report/submited', 'ReportController@submited')->name('report.submited');

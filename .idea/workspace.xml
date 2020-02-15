@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="20453497-8b45-4cb6-a264-684b1a1c9166" name="Default Changelist" comment="" />
+    <list default="true" id="20453497-8b45-4cb6-a264-684b1a1c9166" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/profile/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tax_revenue.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tax_revenue.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Assessee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Assessee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/Tax.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssesseeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssesseeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExcelExportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExcelExportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TaxReturnController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaxReturnController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Imports/AssesseeInput.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/TaxSession.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TaxSession.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assessee/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessee/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assessee/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessee/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/alert.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/alert.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/report/non-submited.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report/non-submited.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/report/submited.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report/submited.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +51,9 @@
         <option value="Blade" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -114,9 +149,14 @@
       <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
       <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Xf5o4G7ztwSUmOq6oNnjNOvXwC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -124,8 +164,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/tax_return" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -184,13 +226,21 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="359" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1581510074360" />
+    <state x="1847" y="151" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1581571465768">
+      <screen x="1280" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1847" y="151" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.994/1280.0.1920.1080@1280.0.1920.1080" timestamp="1581571465768" />
     <state x="1934" y="273" width="611" height="534" key="find.popup" timestamp="1581512829587">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="1934" y="273" width="611" height="534" key="find.popup/0.0.1280.994/1280.0.1920.1080@1280.0.1920.1080" timestamp="1581512829587" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1581428303948">
+    <state x="339" y="162" key="run.anything.popup" timestamp="1581583870980">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1581428303948" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1581583870980" />
+    <state x="1903" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1581582002218">
+      <screen x="1280" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1903" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1280.994/1280.0.1920.1080@1280.0.1920.1080" timestamp="1581582002218" />
   </component>
 </project>

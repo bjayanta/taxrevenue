@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2020 at 07:59 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.8
+-- Generation Time: Feb 15, 2020 at 06:56 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,8 +35,8 @@ CREATE TABLE `assessees` (
   `old_tin_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tin_date` date NOT NULL,
   `circle_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -44,10 +44,15 @@ CREATE TABLE `assessees` (
 --
 
 INSERT INTO `assessees` (`id`, `name`, `tin_number`, `old_tin_number`, `tin_date`, `circle_id`, `created_at`, `updated_at`) VALUES
-(1, 'Joy', '123456789123', NULL, '2020-02-12', 1, '2020-02-12 11:32:10', '2020-02-12 11:32:10'),
-(2, 'Araf Karim', '123456789124', NULL, '2020-02-12', 1, '2020-02-12 11:32:34', '2020-02-12 11:32:34'),
-(3, 'Amor', '123456789125', NULL, '2020-02-12', 1, '2020-02-12 11:32:50', '2020-02-12 11:32:50'),
-(4, 'Maruf', '123456789126', NULL, '2020-02-12', 1, '2020-02-12 11:34:29', '2020-02-12 11:34:29');
+(1, 'A B S SIDDIQUE', '323456789124', '551114329', '2017-02-12', 1, '2020-02-13 09:02:06', NULL),
+(2, 'A K M Fazlul Hoque', '323456789125', '551114330', '2017-02-13', 1, '2020-02-13 09:02:06', NULL),
+(3, 'A K M Mazharul Islam Khan', '323456789126', '551114331', '2018-02-14', 1, '2020-02-13 09:02:06', NULL),
+(4, 'A Latif Khan', '323456789127', '551114332', '2020-02-15', 1, '2020-02-13 09:02:06', NULL),
+(5, 'Joy', '323456789128', '551114333', '2020-02-16', 1, '2020-02-13 09:02:06', NULL),
+(6, 'Araf Karim', '323456789129', '551114334', '2020-02-17', 1, '2020-02-13 09:02:06', NULL),
+(7, 'Shibbir', '323456789130', '551114335', '2020-02-18', 1, '2020-02-13 09:02:06', NULL),
+(8, 'Jayanta Biswas', '323456789131', '551114336', '2020-02-19', 1, '2020-02-13 09:02:06', NULL),
+(9, 'Jabbar', '323456789132', '551114337', '2020-02-20', 1, '2020-02-13 09:02:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -146,8 +151,10 @@ CREATE TABLE `tax_returns` (
 
 INSERT INTO `tax_returns` (`id`, `assessee_id`, `tax_session_id`, `circle_id`, `amount`, `created_at`, `updated_at`) VALUES
 (1, 2, 1, 1, '5000.00', '2020-02-12 11:36:35', '2020-02-12 11:36:35'),
-(2, 3, 1, 1, '4000.00', '2020-02-12 11:36:52', '2020-02-12 11:36:52'),
-(3, 3, 2, 1, '3000.00', '2020-02-12 11:36:53', '2020-02-12 11:36:53');
+(4, 5, 1, 1, '5000.00', '2020-02-13 00:07:53', '2020-02-13 00:07:53'),
+(5, 5, 3, 1, '1000.00', '2020-02-13 00:27:17', '2020-02-13 00:27:17'),
+(6, 4, 1, 1, '1000.00', '2020-02-13 00:29:15', '2020-02-13 00:29:15'),
+(7, 8, 2, 1, '5000.00', '2020-02-13 05:00:27', '2020-02-13 05:00:27');
 
 -- --------------------------------------------------------
 
@@ -197,8 +204,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `circle_id`, `email_verified_at`, `password`, `is_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Circle one', 'circleone@gmail.com', 1, NULL, '$2y$10$G3X6q9./Q3xW7PRT.UY3uuJbbHGqpsJm1xizTNKQ9xY3e2k.notzG', 0, NULL, '2020-02-12 11:23:37', '2020-02-12 11:23:37'),
-(2, 'Circle two', 'circletwo@gmail.com', 2, NULL, '$2y$10$G3X6q9./Q3xW7PRT.UY3uuJbbHGqpsJm1xizTNKQ9xY3e2k.notzG', 0, NULL, '2020-02-12 11:23:37', '2020-02-12 11:23:37');
+(1, 'Circle one', 'circleone@gmail.com', 1, NULL, '$2y$10$rT0I9/LlSPyuKZ3xiK3UdO25.04Giqc7I/1nF8qn/xrifHmASQV7G', 1, '3HiLjcMMmpAsonh7Dy6QJ6gRvlkmM2DAjy8kiP0YFHWn6cNN6udkF5ZtZZNZ', '2020-02-12 11:23:37', '2020-02-13 00:21:54'),
+(2, 'Circle two', 'circletwo@gmail.com', 2, NULL, '$2y$10$G3X6q9./Q3xW7PRT.UY3uuJbbHGqpsJm1xizTNKQ9xY3e2k.notzG', 1, NULL, '2020-02-12 11:23:37', '2020-02-12 11:23:37');
 
 --
 -- Indexes for dumped tables
@@ -267,7 +274,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assessees`
 --
 ALTER TABLE `assessees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `circles`
@@ -291,7 +298,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `tax_returns`
 --
 ALTER TABLE `tax_returns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tax_sessions`

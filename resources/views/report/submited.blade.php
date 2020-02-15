@@ -13,11 +13,11 @@
 
                     <div class="row">
                         <div class="form-group col-md-6 required">
-                            <select name="tax_session_id" class="form-control">
-                                <option value="">-- Select One --</option>
+                            <select name="tax_session_id" class="form-control" required>
+                                <option value="" disabled selected>-- Select One --</option>
 
                                 @foreach($sessions as $session)
-                                    <option value="{{ $session->id }}">{{ $session->title }}</option>
+                                    <option {{ (request()->tax_session_id == $session->id) ? 'selected' : '' }} value="{{ $session->id }}">{{ $session->title }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -30,98 +30,99 @@
                         </div>
                     </div>
                 </form>
-                <hr>
 
-                @if($sessions != null)
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <form action="{{ route('export.allAssessee') }}" method="GET">
-                            <button type="submit">Export</button>
-                        </form>
-                    </div>
+                @if(request()->search == 1)
+                    <hr>
+                    <!-- table -->
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <form action="{{ route('export.allSubmitedAssessee') }}" method="GET">
+                                <input type="hidden" name="input" value="all-submited-assessees">
+                                <input type="hidden" name="tax_session_id" value="{{ request()->tax_session_id }}">
 
-                    <!-- paginate -->
-                    <div class="col-md-6">
-                        <div class="float-right">
-                            {{-- $assessees->links() --}}
+                                <button type="submit">Export</button>
+                            </form>
+                        </div>
+
+                        <!-- paginate -->
+                        <div class="col-md-6">
+                            <div class="float-right">
+                                {{ (!empty($assessees)) ? $assessees->appends(request()->all())->links() : '' }}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <table class="table table-sm">
-                    <thead>
-                    <tr>
-                        <th>SI</th>
-                        <th>Assessee</th>
-                        <th>Tin Number</th>
-                        <th>Tin Date</th>
-                        <th>Old Tin Number</th>
+                    <table class="table table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th>SI</th>
+                            <th>Assessee</th>
+                            <th>Tin Number</th>
+                            <th>Tin Date</th>
+                            <th>Old Tin Number</th>
 
-                        <!-- tax session -->
-                        @foreach($sessions as $session)
-                            <th class="text-right">{{ $session->title }}</th>
-                        @endforeach
-                    </tr>
-                    </thead>
+                            <!-- tax session -->
+                            @foreach($sessions as $session)
+                                <th class="text-right {{ (request()->tax_session_id == $session->id) ? 'bg-success text-white' : '' }}">{{ $session->title }}</th>
+                            @endforeach
+                        </tr>
+                        </thead>
 
-                    <tbody>
-                        @foreach($assessees as $assessee)
+                        <tbody>
+                        @forelse($assessees as $assessee)
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $assessee->name }}</td>
-                                <td>
-                                    <a href="{{ route('tax_return.edit', $assessee->id) }}">{{ $assessee->tin_number }}</a>
-                                </td>
+                                <td><a href="{{ route('tax_return.edit', $assessee->id) }}">{{ $assessee->tin_number }}</a></td>
                                 <td>{{ $assessee->tin_date }}</td>
                                 <td>{{ $assessee->old_tin_number }}</td>
 
                                 <!-- tax session -->
                                 @foreach($sessions as $session)
-                                    @php
-                                        $amount = (Tax::getTaxReturnDetails($assessee->id, $session->id) != null) ? Tax::getTaxReturnDetails($assessee->id, $session->id)->amount : 0;
-                                    @endphp
+                                    <td class="text-right {{ (request()->tax_session_id == $session->id) ? 'table-success' : '' }}">
+                                        @php
+                                            $total[$session->id] += $assessee->taxSessions->find($session->id)->tax_return->amount ?? 0;
+                                        @endphp
 
-                                    @if($amount > 0)
-                                        <td class="text-right">
-                                            @php
-                                                $total[$session->id] += $amount;
-                                            @endphp
-
-                                            {{ number_format($amount, 2, '.', ',') }}
-                                        </td>
-                                    @else
-                                        <td class="text-right">0.00</td>
-                                    @endif
+                                        {{ number_format(($assessee->taxSessions->find($session->id)->tax_return->amount ?? 0), 2) }}
+                                    </td>
                                 @endforeach
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="80" class="text-center font-weight-bold table-danger">No record found</td>
+                            </tr>
+                        @endforelse
 
                         <tr>
                             <th colspan="5" class="text-right">Total</th>
 
                             @foreach($sessions as $session)
-                                <th class="text-right">{{ number_format($total[$session->id], 2, '.', ',') }}</th>
+                                <th class="text-right {{ (request()->tax_session_id == $session->id) ? 'table-success' : '' }}">{{ number_format($total[$session->id], 2) }}</th>
                             @endforeach
                         </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <form action="{{ route('export.allAssessee') }}" method="GET">
-                            <button type="submit">Export</button>
-                        </form>
-                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <form action="{{ route('export.allSubmitedAssessee') }}" method="GET">
+                                <input type="hidden" name="input" value="all-submited-assessees">
+                                <input type="hidden" name="tax_session_id" value="{{ request()->tax_session_id }}">
 
-                    <!-- paginate -->
-                    <div class="col-md-6">
-                        <div class="float-right">
-                            {{ $assessees->links() }}
+                                <button type="submit">Export</button>
+                            </form>
+                        </div>
+
+                        <!-- paginate -->
+                        <div class="col-md-6">
+                            <div class="float-right">
+                                {{ (!empty($assessees)) ? $assessees->appends(request()->all())->links() : '' }}
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
-
+                
             </div>
         </div>
     </div>

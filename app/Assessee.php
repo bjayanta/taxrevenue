@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Assessee extends Model
 {
 
+    public static $snakeAttributes = true;
     /**
      * Tax Sessions
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
