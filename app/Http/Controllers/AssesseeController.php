@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -42,7 +43,7 @@ class AssesseeController extends Controller {
             $total[$session->id] = 0;
         }
 
-        if (request()->search == 1) {
+        if (request()->search == 1){
             $where = [
                 ['circle_id', 1],
                 ['tin_number', request()->tin_number]
@@ -53,6 +54,8 @@ class AssesseeController extends Controller {
             // view
             return redirect(route('tax_return.edit', $assessee->id));
         }
+
+        // return "asdasdf";
 
         // view
         return view('assessee.index', compact('assessees', 'sessions', 'total'))->with($this->context);
@@ -157,10 +160,17 @@ class AssesseeController extends Controller {
 
         Storage::delete($path);
         $fields = ["name", "tin_number", "old_tin_number", "tin_date", "circle_id"];
-        $data = array_map(function ($row) use ($fields) {
+        $data = array_map(function ($row) use ($fields) { //Combining key value pair;
             $row[] = Auth::user()->circle_id;
             return array_combine($fields, $row);
         }, $dataToArray);
+
+
+        $data = array_map(function($item){ // 
+            $d = Carbon::parse($item["tin_date"]);
+            $item["tin_date"] = $d->format("Y-m-d");
+            return $item;
+        },$data);
 
         return view('assessee.upload_preview', compact('data'))->with($this->context);
     }

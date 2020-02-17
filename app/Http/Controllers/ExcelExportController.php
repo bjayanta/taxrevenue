@@ -46,7 +46,7 @@ class ExcelExportController extends Controller {
                 'sl'                => $index + 1,
                 'name'              => $row->name,
                 'tin_number'        => $row->tin_number,
-                'tin_date'          => $row->tin_date,
+                'tin_date'          => date("d/m/Y",strtotime($row->tin_date)),
                 'old_tin_number'    => $row->old_tin_number,
             ];
 
@@ -74,7 +74,7 @@ class ExcelExportController extends Controller {
                 'sl'                => $index + 1,
                 'name'              => $row->name,
                 'tin_number'        => $row->tin_number,
-                'tin_date'          => $row->tin_date,
+                'tin_date'          => date("d/m/Y",strtotime($row->tin_date)),
                 'old_tin_number'    => $row->old_tin_number,
             ];
 
@@ -102,7 +102,7 @@ class ExcelExportController extends Controller {
                 'sl'                => $index + 1,
                 'name'              => $row->name,
                 'tin_number'        => $row->tin_number,
-                'tin_date'          => $row->tin_date,
+                'tin_date'          => date("d/m/Y",strtotime($row->tin_date)),
                 'old_tin_number'    => $row->old_tin_number,
             ];
 

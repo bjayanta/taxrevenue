@@ -68,7 +68,7 @@
                         <td>{{ $loop->iteration }}.</td>
                         <td>{{ $assessee->name }}</td>
                         <td><a href="{{ route('tax_return.edit', $assessee->id) }}">{{ $assessee->tin_number }}</a></td>
-                        <td>{{ $assessee->tin_date }}</td>
+                        <td>{{ date("d/m/Y",strtotime($assessee->tin_date)) }}</td>
                         <td>{{ $assessee->old_tin_number }}</td>
 
                         <!-- tax session -->
