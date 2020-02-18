@@ -51,11 +51,13 @@ class AssesseeController extends Controller {
 
             $assessee = Assessee::where($where)->first();
 
-            // view
-            return redirect(route('tax_return.edit', $assessee->id));
-        }
+            if($assessee) {
+                return redirect(route('tax_return.edit', $assessee->id)); // view
+            }
 
-        // return "asdasdf";
+            // flash message with view 
+            return redirect()->back()->withError("No Assessee found.");
+        }
 
         // view
         return view('assessee.index', compact('assessees', 'sessions', 'total'))->with($this->context);
@@ -77,6 +79,12 @@ class AssesseeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        $request->validate([
+            'assesse' => 'required',
+            'tin_number' => 'required|unique:assessees,tin_number',
+            'tin_date' => 'required'
+        ]);
+
         $asseesee = new Assessee;
         $asseesee->name = $request->assesse;
         $asseesee->tin_number = $request->tin_number;
@@ -165,12 +173,16 @@ class AssesseeController extends Controller {
             return array_combine($fields, $row);
         }, $dataToArray);
 
-
+		//return $data;
         $data = array_map(function($item){ // 
-            $d = Carbon::parse($item["tin_date"]);
-            $item["tin_date"] = $d->format("Y-m-d");
-            return $item;
+			if(trim($item["tin_date"])!= null){
+				$d = Carbon::createFromFormat("d/m/Y",$item["tin_date"]);
+				//$d = Carbon::createFromFormat("d/m/Y","18/02/2020");
+				$item["tin_date"] = $d->format("Y-m-d");				
+			}
+			return $item;
         },$data);
+		
 
         return view('assessee.upload_preview', compact('data'))->with($this->context);
     }
@@ -182,4 +194,5 @@ class AssesseeController extends Controller {
             return redirect("assessee")->with("success", "Data Successfully Imported");
         }
     }
+
 }

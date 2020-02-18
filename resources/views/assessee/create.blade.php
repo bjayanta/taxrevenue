@@ -15,23 +15,24 @@
                         <div class="form-row">
                             <div class="form-group col-md-6 required">
                                 <label for="assesse">Assesse name *</label>
-                                <input type="text" required name="assesse" class="form-control" id="assesse" placeholder="Assesse name">
+                                <input type="text" required name="assesse" value="{{ old('assesse') }}" class="form-control" id="assesse" placeholder="Assesse name">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="tin_date">Tin Date *</label>
-                                <input type="date" required name="tin_date" class="form-control" id="tin_date" value="{{ date('Y-m-d') }}">
+                                <input type="date" required name="tin_date" class="form-control" id="tin_date" value="{{ old('tin_date') }}">
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-group col-md-6 required">
                                 <label for="tin_number">Tin Number *</label>
-                                <input type="number" required name="tin_number" class="form-control" id="tin_number" placeholder="Tin number">
+                                <input type="number" required name="tin_number" value="{{ old('tin_number') }}" class="form-control" id="tin_number" placeholder="Tin number">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="old_tin_number">Old Tin Number (Optional)</label>
-                                <input type="number" name="old_tin_number" class="form-control" id="old_tin_number" placeholder="Old tin number">
+                                <input type="number" name="old_tin_number" value="{{ old('old_tin_number') }}" class="form-control" id="old_tin_number" placeholder="Old tin number">
                             </div>
                         </div>
 
@@ -50,7 +51,10 @@
                                 @csrf
                                 
                                 <div>
-                                    <label for="upload" style="display: block;">Upload (.xlsx) *</label>
+                                    <label for="upload" style="display: block;">
+                                        Upload (.xlsx) * <a href="{{ asset('public/circle_stock_demo.xlsx') }}" download>Download Sample File</a>
+                                    </label>
+
                                     <input type="file" name="file" accept=".xlsx" id="upload" style="width: 190px;" required>
                                     <small id="passwordHelpBlock" class="form-text text-muted">File extension must be .xlsx only.</small>
                                 </div>

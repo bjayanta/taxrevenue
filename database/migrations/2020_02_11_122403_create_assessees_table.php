@@ -16,9 +16,9 @@ class CreateAssesseesTable extends Migration
         Schema::create('assessees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('tin_number')->unique();
-            $table->string('old_tin_number')->unique()->nullable();
-            $table->date('tin_date');
+            $table->string('tin_number')->unique()->nullable();
+            $table->string('old_tin_number')->nullable();
+            $table->date('tin_date')->nullable();
             $table->unsignedBigInteger('circle_id');
             $table->timestamps();
 

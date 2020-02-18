@@ -9,6 +9,7 @@
             </div>
 
             <div class="card-body">
+
                 <table class="table">
                     <tr>
                         <th>SL</th>
@@ -36,6 +37,7 @@
                     <input type="hidden" name="data" value="{{ json_encode($data)  }}">
                     <input type="submit" name="confirm" value="Confirm">
                 </form>
+
             </div>
         </div>
     </div>

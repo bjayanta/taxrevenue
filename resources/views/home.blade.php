@@ -30,14 +30,17 @@
                         {{-- <div style="width: 60px; height: 60px;" class="rounded-circle d-flex align-items-center justify-content-center mb-2"> --}}
                         {{-- <img src="{{ asset('public/images/taka.svg') }}" class="img-fluid" alt=""/> --}}
                         {{-- </div> --}}
+                        @php
+                            $total = 0;
+                        @endphp
                         @foreach($tax_returns as $return)
                             @php
-                                $total = $return->where('tax_session_id', $session->id)->sum('amount');
+                                $total = $return->where('circle_id', Auth::user()->circle_id)->where('tax_session_id', $session->id)->sum('amount');
                             @endphp
                         @endforeach
 
                         <p class="lead mb-0" style="font-size: 1.5rem;">{{ $session->title }}</p>
-                        <h4 class="display-4 mb-2" style="font-size: 1rem;">BDT {{ number_format($total, 2, '.', ',') }}</h4>
+                        <h4 class="display-4 mb-2" style="font-size: 1rem;">BDT {{ ($total != 0) ? number_format($total, 2, '.', ',') : '0.00' }}</h4>
                    </div>
                </div>
            </div>

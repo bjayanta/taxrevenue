@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <table class="table table-sm">
+            <table class="table table-sm table-hover">
                 <thead>
                     <tr>
                         <th>SI</th>
@@ -100,12 +100,12 @@
                         <input type="hidden" name="input" value="all-assessees">
                         <button type="submit">Export</button>
                     </form>
+                </div>
 
-                    <!-- paginate -->
-                    <div class="col-md-6">
-                        <div class="float-right">
-                            {{ $assessees->links() }}
-                        </div>
+                <!-- paginate -->
+                <div class="col-md-6">
+                    <div class="float-right">
+                        {{ $assessees->links() }}
                     </div>
                 </div>
 
